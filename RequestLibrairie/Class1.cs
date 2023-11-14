@@ -42,8 +42,33 @@ namespace RequestLibrairie
 			return result;
 		}
 
-		public void SetData()
+		public void SetData(string cs, string table, params object[] values )
 		{
+			string ph = $"INSERT INTO {table} VALUES (";
+            for (int i = 0; i < values.Length; i++)
+            {
+				if (i == values.Length - 1)
+				{
+					ph = ph + $"'{values[i]}');";
+				}
+				else
+				{
+					ph = ph + $"'{values[i]}',";
+				}
+			}
+			Console.WriteLine(ph);
+			using (SqlConnection c = new SqlConnection(cs))
+			{
+				using (SqlCommand cmd = c.CreateCommand())
+				{
+					cmd.CommandText = ph;
+					cmd.CommandType = CommandType.Text;
+					c.Open();
+					cmd.ExecuteNonQuery();
+					c.Close();
+				}
+			}
+
 
 		}
 		public static void AddItem<T>(string connectionString, string commandText, CommandType cType, T item, params string[] parameters)
