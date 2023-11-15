@@ -16,11 +16,12 @@ foreach (var data in recup)
     Console.WriteLine(data);
 }
 
-//Director d = new Director()
-//{
-//    first_name = "jean",
-//    last_name = "michel",
-//    birthdate = DateTime.Now,
-//};
-object[] values = new object[] { "jean", "michel", "2000-01-01" };
+Director d = new Director()
+{
+    first_name = "jean",
+    last_name = "michel",
+    birthdate = new DateTime(2000-01-01),
+};
+object[] values = new object[] { "jean", "michel",  };
 requestDatabase.SetData(connectionString, "directors", values);
+//requestDatabase.SetData(connectionString, "directors", d);
